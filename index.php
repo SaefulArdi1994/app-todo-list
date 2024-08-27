@@ -16,6 +16,13 @@
     $query_select = "select * from task order by id_task desc";
     $run_query_select = mysqli_query($conn, $query_select);
 
+    // hapus data
+    if (isset($_GET['delete'])) {
+        $query_delete = "delete from task where id_task = '".$_GET['delete']."'";
+        $run_query_delete = mysqli_query($conn, $query_delete);
+
+        header('Refresh:0 url=index.php');
+    }
 
 
 ?>
@@ -77,7 +84,7 @@
 
                     <div>
                         <a href="" class="text-orange" title="edit"><i class='bx bx-edit'></i></a>
-                        <a href="" class="text-red" title="edit"><i class='bx bxs-trash'></i></a>
+                        <a href="?delete=<?= $r['id_task']?>" class="text-red" title="remove" onclick="return confirm(Are you sure ?)"><i class='bx bxs-trash'></i></a>
                     </div>
                 </div>
             </div>
