@@ -1,3 +1,25 @@
+<?php 
+
+    include 'database.php';
+
+    // Insert data
+    if(isset($_POST['add'])){
+        $query_insert = "insert into task (label_task, status_task) value ('". $_POST['task'] ."', 'open')";
+        $run_query_insert = mysqli_query($conn, $query_insert);
+
+        if($run_query_insert){
+            header('Refresh;0 url=index.php');
+        }                     
+    }
+
+    // proses show data
+    $query_select = "select * from task order by id_task desc";
+    $run_query_select = mysqli_query($conn, $query_select);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +54,7 @@
         <div class="content">
             <div class="card">
                 <form action="" method="post">
-                    <input type="text" class="input-control" placeholder="Add Task">
+                    <input type="text" name="task" class="input-control" placeholder="Add Task">
 
                     <div class="text-right">
                         <button type="submit" name="add">Add</button>
