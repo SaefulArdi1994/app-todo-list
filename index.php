@@ -17,6 +17,7 @@
     $run_query_select = mysqli_query($conn, $query_select);
 
 
+
 ?>
 
 
@@ -62,11 +63,16 @@
                 </form>
             </div>
 
+            <?php 
+                if(mysqli_num_rows($run_query_select) > 0) { 
+                while($r = mysqli_fetch_array($run_query_select)) {
+            ?>
+
             <div class="card">
                 <div class="task-item">
                     <div>
                         <input type="checkbox">
-                        <span>Shalat Shubuh</span>
+                        <span><?= $r['label_task']?></span>
                     </div>
 
                     <div>
@@ -75,6 +81,10 @@
                     </div>
                 </div>
             </div>
+
+            <?php }} else { ?>
+                <div>Belum ada task</div>
+            <?php } ?>
         </div>
     </main>
 
