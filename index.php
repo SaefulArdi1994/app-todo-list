@@ -24,6 +24,22 @@
         header('Refresh:0 url=index.php');
     }
 
+    // Proses update date
+    if (isset($_GET['done'])) {
+        $status = 'close';
+
+        if ($_GET['status'] == 'open') {
+            $status = 'close';
+        } else {
+            $status = 'open';
+        }
+
+        $query_update = "update task set status_task = '". $status."' where id_task = '". $_GET['done']."' ";
+        $run_query_update = mysqli_query($conn, $query_update);
+
+        header('Refresh:0 url=index.php');
+    }
+
 
 ?>
 
@@ -76,9 +92,9 @@
             ?>
 
             <div class="card">
-                <div class="task-item">
+                <div class="task-item <?= $r['status_task'] == 'close' ? 'done': ''?> ">
                     <div>
-                        <input type="checkbox">
+                        <input type="checkbox" onclick="window.location.href = '?done=<?= $r['id_task'] ?>&status=<?= $r['status_task'] ?>'">
                         <span><?= $r['label_task']?></span>
                     </div>
 
