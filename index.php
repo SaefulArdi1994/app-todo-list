@@ -51,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- css -->
-     <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="css/style.css">
 
      <!-- box icons -->
      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -59,7 +59,8 @@
 </head>
 <body>
 
-    <header>
+  <div class="container">
+  <header>
         <div class="title">
             <i class='bx bx-sun'></i>
             <span>Todo List</span>
@@ -94,12 +95,12 @@
             <div class="card">
                 <div class="task-item <?= $r['status_task'] == 'close' ? 'done': ''?> ">
                     <div>
-                        <input type="checkbox" onclick="window.location.href = '?done=<?= $r['id_task'] ?>&status=<?= $r['status_task'] ?>'">
+                        <input type="checkbox" onclick="window.location.href = '?done=<?= $r['id_task'] ?>&status=<?= $r['status_task'] ?>'" <?= $r['status_task'] == 'close' ? 'checked' : '' ?>>
                         <span><?= $r['label_task']?></span>
                     </div>
 
                     <div>
-                        <a href="" class="text-orange" title="edit"><i class='bx bx-edit'></i></a>
+                        <a href="edit.php?id=<?= $r['id_task']?>" class="text-orange" title="edit"><i class='bx bx-edit'></i></a>
                         <a href="?delete=<?= $r['id_task']?>" class="text-red" title="remove" onclick="return confirm(Are you sure ?)"><i class='bx bxs-trash'></i></a>
                     </div>
                 </div>
@@ -114,6 +115,7 @@
     <footer>
 
     </footer>
+  </div>
 
 </body>
 </html>
